@@ -55,7 +55,24 @@ app.post("/register", (req, res) => {
     })
 });
 
+app.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
 
+    User.findOne({
+        email: username
+    }, (err, foundUser) => {
+        if (err) {
+            console.log(" login failed");
+        } else {
+            if (foundUser) {
+                if (foundUser.password === password) {
+                    res.render("secrets")
+                }
+            }
+        }
+    })
+})
 
 
 
