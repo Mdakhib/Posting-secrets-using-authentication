@@ -194,6 +194,10 @@ app.post("/login", (req, res) => {
 
 });
 
-app.listen(process.env.PORT|| 3000, function () {
-  console.log("server Started on port 3000.");
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(port, () => {
+  console.log("server is running at 3000");
 });
